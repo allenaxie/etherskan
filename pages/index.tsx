@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import classes from '../styles/Home.module.scss';
-import {Navbar, Searchbar} from '../components';
+import {Navbar, Searchbar, Statistics, Blocks, Transactions} from '../components';
 
 const Home: NextPage = () => {
   return (
@@ -19,14 +19,14 @@ const Home: NextPage = () => {
           <Searchbar/>
         </section>
         <section>
-          Statistics/ Chart
+          <Statistics/>
         </section>
-        <section>
-          <div>
-            Latest blocks
+        <section className={classes.blockTransactionSection}>
+          <div className={classes.blocks}>
+            <Blocks/>
           </div>
-          <div>
-            Latest transactions
+          <div className={classes.transactions}>
+            <Transactions/>
           </div>
         </section>
       </main>
