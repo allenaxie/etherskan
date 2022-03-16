@@ -4,12 +4,26 @@ import classes from '../styles/Home.module.scss';
 import { Navbar, Searchbar, Statistics, Blocks, Transactions } from '../components';
 
 
-const Home: NextPage = ({ blockchain, ethPrice }: any) => {
+const Home: NextPage = ({ infura, ethPrice }: any) => {
 
-  const Web3 = require('web3');
-  var web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546');
+  // console.log('infura', infura);
 
-  console.log('blockchain', blockchain);
+  // web3
+  // const Web3 = require('web3');
+
+  // // Alchemy
+  // const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
+  // // // Using HTTPS
+  // const web3 = createAlchemyWeb3(`https://eth-mainnet.alchemyapi.io/${process.env.ALCHEMY_API_KEY}`);
+  // var web3 = new Web3(Web3.currentProvider || 'http://localhost:3000');
+  // console.log(web3.currentProvider);
+
+  
+  // // Many web3.js methods return promises.
+  // web3.eth.getBlock("latest").then(block => {
+  //   console.log(block);
+  // });
+
 
   return (
     <div className={classes.container}>
@@ -19,6 +33,7 @@ const Home: NextPage = ({ blockchain, ethPrice }: any) => {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://i.icomoon.io/public/temp/4dd956f873/UntitledProject/style-svg.css" />
         <script defer src="https://i.icomoon.io/public/temp/4dd956f873/UntitledProject/svgxuse.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@alch/alchemy-web3@latest/dist/alchemyWeb3.min.js"></script>
       </Head>
       <header className={classes.navbar}>
         <Navbar />
@@ -46,23 +61,15 @@ const Home: NextPage = ({ blockchain, ethPrice }: any) => {
 
 export async function getStaticProps(context: any) {
   const { params } = context;
+  const Web3 = require('web3');
 
-  // const response = await fetch(`https://mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`, {
-  //     body: '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}',
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     method: "POST"
-  //   });
-  // const data = await response.json();
-  // return {
-  //     props: {
-  //         eth: data,
-  //     }
-  // }
+  const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
+  const web3 = createAlchemyWeb3(`https://eth-rinkeby.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`);
+  const blockNumber = await web3.eth.getBlockNumber();
+  console.log("The latest block number is " + blockNumber);
 
-  const [blockchainRes, ethPriceRes] = await Promise.all([
-    fetch(`https://mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`, {
+  const [infuraRes, ethPriceRes] = await Promise.all([
+    fetch(`https://rinkeby.infura.io/v3/${process.env.INFURA_PROJECT_ID}`, {
       body: '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}',
       headers: {
         "Content-Type": "application/json"
@@ -78,14 +85,14 @@ export async function getStaticProps(context: any) {
     }),
   ])
 
-  const [blockchain, ethPrice] = await Promise.all([
-    blockchainRes.json(),
+  const [infura, ethPrice] = await Promise.all([
+    infuraRes.json(),
     ethPriceRes.json(),
-
   ])
   return {
     props: {
-      blockchain, ethPrice
+      infura,
+      ethPrice,
     }
   }
 }
