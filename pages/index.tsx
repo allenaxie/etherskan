@@ -35,7 +35,7 @@ const Home: NextPage = ({ blockchain, ethPrice }: any) => {
           </div>
           <div className={classes.transactions}>
             <Transactions />
-            {JSON.stringify(ethPrice)}
+            {JSON.stringify(ethPrice.data.price)}
           </div>
         </section>
       </main>
@@ -69,11 +69,11 @@ export async function getStaticProps(context: any) {
       },
       method: "POST"
     }),
-    fetch("https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers=1&orderBy=marketCap&search=eth&orderDirection=desc&limit=50&offset=0", {
+    fetch("https://coinranking1.p.rapidapi.com/coin/razxDUgYGNAdQ/price?referenceCurrencyUuid=yhjMzLPhuIDl", {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "coinranking1.p.rapidapi.com",
-        "x-rapidapi-key":`${process.env.RAPID_API_KEY}`,
+        "x-rapidapi-key": `${process.env.RAPID_API_KEY}`,
       }
     })
   ])
