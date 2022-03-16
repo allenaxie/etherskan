@@ -1,6 +1,48 @@
 .container {
     border: 1px solid black;
-    height: 15rem;
-    display: flex;
-    justify-content: space-evenly;
 }
+
+.cardContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    height: 100%;
+}
+
+.col1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.ethPriceContainer,
+.ethMCContainer {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+}
+
+.ethPriceContainer {
+    margin-bottom: 1.5rem;
+}
+
+.iconEth
+,.ethMCIcon {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+    margin-right: 5px;
+}
+
+.ethPriceStat,
+.ethMCStat {
+    display: flex;
+    flex-direction: column;
+}
+
