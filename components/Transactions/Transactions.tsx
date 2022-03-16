@@ -1,5 +1,5 @@
 import classes from './Transactions.module.scss';
-import {List} from 'antd';
+import {List, Button} from 'antd';
 
 
 const Transactions = () => {
@@ -13,11 +13,17 @@ const Transactions = () => {
 
     return (
         <List
+        bordered
         className={classes.listContainer}
         dataSource={data}
         header={<span className={classes.listHeader}>Latest Transactions</span>}
-        renderItem={item => (
-            <List.Item key="1">
+        footer={
+            <div className={classes.footer}>
+                <Button className={classes.button}>View all transactions</Button>
+            </div>
+            }
+        renderItem={(item,index) => (
+            <List.Item key={index}>
                 <List.Item.Meta
                 title="Title"
                 description="description"

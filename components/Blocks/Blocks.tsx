@@ -1,5 +1,5 @@
 import classes from './Blocks.module.scss';
-import {List} from 'antd';
+import {List, Button} from 'antd';
 
 const Blocks = () => {
 
@@ -13,11 +13,17 @@ const Blocks = () => {
 
     return (
         <List
+        bordered
         className={classes.listContainer}
         dataSource={data}
         header={<span className={classes.listHeader}>Latest Blocks</span>}
-        renderItem={item => (
-            <List.Item key="1">
+        footer={
+        <div className={classes.footer}>
+            <Button className={classes.button}>View all blocks</Button>
+        </div>
+        }
+        renderItem={(item,index) => (
+            <List.Item key={index}>
                 <List.Item.Meta
                 title="Title"
                 description="description"
