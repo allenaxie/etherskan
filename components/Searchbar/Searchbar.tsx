@@ -1,5 +1,5 @@
 import classes from './Searchbar.module.scss';
-import { Input, Space, Menu, Dropdown } from 'antd';
+import { Input, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
 const Searchbar = () => {

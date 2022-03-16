@@ -25,4 +25,11 @@
 .navItem {
     margin: 0 1rem;
     font-weight: 660;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userAvatar {
+    margin-right: 3px;
 }
