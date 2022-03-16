@@ -1,19 +1,16 @@
 import type { NextPage, GetStaticProps } from 'next';
 import Head from 'next/head';
 import classes from '../styles/Home.module.scss';
-import {Navbar, Searchbar, Statistics, Blocks, Transactions} from '../components';
+import { Navbar, Searchbar, Statistics, Blocks, Transactions } from '../components';
 
 
-const Home: NextPage = ({eth}:any) => {
+const Home: NextPage = ({ blockchain, ethPrice }: any) => {
 
   const Web3 = require('web3');
   var web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546');
 
-  console.log(web3)
-
-
-  console.log(process.env.INFURA_PROJECT_ID);
-  console.log('data',eth);
+  console.log('ethPrice', ethPrice);
+  console.log('blockchain', blockchain);
 
   return (
     <div className={classes.container}>
@@ -23,22 +20,22 @@ const Home: NextPage = ({eth}:any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className={classes.navbar}>
-        <Navbar/>
+        <Navbar />
       </header>
       <main className={classes.main}>
         <section className={classes.searchbarSection}>
-          <Searchbar/>
+          <Searchbar />
         </section>
         <section>
-          <Statistics/>
+          <Statistics />
         </section>
         <section className={classes.blockTransactionSection}>
           <div className={classes.blocks}>
-            <Blocks/>
+            <Blocks />
           </div>
           <div className={classes.transactions}>
-            <Transactions/>
-            {JSON.stringify(eth)}
+            <Transactions />
+            {JSON.stringify(ethPrice)}
           </div>
         </section>
       </main>
@@ -47,20 +44,49 @@ const Home: NextPage = ({eth}:any) => {
 }
 
 
-export async function getStaticProps(context:any) {
-  const {params} = context;
-  const response = await fetch(`https://mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`, {
+export async function getStaticProps(context: any) {
+  const { params } = context;
+
+  // const response = await fetch(`https://mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`, {
+  //     body: '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}',
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     method: "POST"
+  //   });
+  // const data = await response.json();
+  // return {
+  //     props: {
+  //         eth: data,
+  //     }
+  // }
+
+  const [blockchainRes, ethPriceRes] = await Promise.all([
+    fetch(`https://mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`, {
       body: '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}',
       headers: {
         "Content-Type": "application/json"
       },
       method: "POST"
-    });
-  const data = await response.json();
-  return {
-      props: {
-          eth: data,
+    }),
+    fetch("https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers=1&orderBy=marketCap&search=eth&orderDirection=desc&limit=50&offset=0", {
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+        "x-rapidapi-key":`${process.env.RAPID_API_KEY}`,
       }
+    })
+  ])
+
+  const [blockchain, ethPrice] = await Promise.all([
+    blockchainRes.json(),
+    ethPriceRes.json(),
+
+  ])
+  return {
+    props: {
+      blockchain, ethPrice
+    }
   }
 }
 
