@@ -3,7 +3,7 @@ import {List, Button} from 'antd';
 
 
 const Transactions = () => {
-    const data = [
+    const dummydata = [
         'Racing car sprays burning fuel into crowd.',
         'Japanese princess to wed commoner.',
         'Australian walks 100km after outback crash.',
@@ -11,11 +11,12 @@ const Transactions = () => {
         'Los Angeles battles huge wildfires.',
       ];
 
+      
     return (
         <List
         bordered
         className={classes.listContainer}
-        dataSource={data}
+        dataSource={dummydata}
         header={<span className={classes.listHeader}>Latest Transactions</span>}
         footer={
             <div className={classes.footer}>
@@ -28,7 +29,9 @@ const Transactions = () => {
                 title="Title"
                 description="description"
                 />
-                <div>{item}</div>
+                <div>
+                    {item}
+                </div>
                 
             </List.Item>
         )}
