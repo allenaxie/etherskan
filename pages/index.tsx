@@ -6,6 +6,12 @@ import {Navbar, Searchbar, Statistics, Blocks, Transactions} from '../components
 
 const Home: NextPage = ({eth}:any) => {
 
+  const Web3 = require('web3');
+  var web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546');
+
+  console.log(web3)
+
+
   console.log(process.env.INFURA_PROJECT_ID);
   console.log('data',eth);
 
@@ -36,7 +42,6 @@ const Home: NextPage = ({eth}:any) => {
           </div>
         </section>
       </main>
-
     </div>
   )
 }
@@ -52,7 +57,6 @@ export async function getStaticProps(context:any) {
       method: "POST"
     });
   const data = await response.json();
-  console.log('aa',data)
   return {
       props: {
           eth: data,
