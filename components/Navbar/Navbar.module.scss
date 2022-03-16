@@ -1,0 +1,27 @@
+.navContainer {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+.navItemContainer {
+    display: flex;
+    justify-content: space-between;
+    
+    &:last-child {
+        margin-right: 3rem;
+    }
+}
+
+.navItem {
+    margin: 0 1rem;
+    font-weight: 660;
+}
