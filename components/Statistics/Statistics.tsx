@@ -36,7 +36,14 @@ const Statistics = ({ ethPrice }: any) => {
                     </div>
                 </div>
                 <div className={classes.col2}>
-                    Column 2
+                    <div className={classes.transMedGasContainer}>
+                        <div className={classes.transactionsContainer}></div>
+                        <div className={classes.medGasContainer}></div>
+                    </div>
+                    <div className={classes.diffHashContainer}>
+                        <div className={classes.difficultyContainer}></div>
+                        <div className={classes.hashrateContainer}></div>
+                    </div>
                 </div>
                 <div className={classes.col3}>
                     <Chart />
