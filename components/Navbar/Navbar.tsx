@@ -6,7 +6,7 @@ const Navbar = () => {
     return (
         <nav className={classes.navContainer}>
             <div className={classes.logoContainer}>
-                <Image src="/logo.png" width={50} height={50}/>
+                <Image src="/logo.png" width={30} height={30}/>
                 <span>Etherskan</span>
             </div>
             <div className={classes.navItemContainer}>
