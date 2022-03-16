@@ -4,7 +4,7 @@ import classes from '../styles/Home.module.scss';
 import { Navbar, Searchbar, Statistics, Blocks, Transactions } from '../components';
 
 
-const Home: NextPage = ({ infura, ethPrice }: any) => {
+const Home: NextPage = ({ infura, ethPrice, transactions }: any) => {
 
   // console.log('infura', infura);
 
@@ -50,7 +50,7 @@ const Home: NextPage = ({ infura, ethPrice }: any) => {
             <Blocks />
           </div>
           <div className={classes.transactions}>
-            <Transactions />
+            <Transactions transactions ={transactions}/>
           </div>
         </section>
       </main>
@@ -65,10 +65,10 @@ export async function getStaticProps(context: any) {
 
   const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
   const web3 = createAlchemyWeb3(`https://eth-rinkeby.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`);
-  const blockNumber = await web3.eth.getBlockNumber();
-  console.log("The latest block number is " + blockNumber);
+  // const blockNumber = await web3.eth.getBlock('latest');
+  // console.log("The latest block number is " + JSON.stringify(blockNumber.transactions));
 
-  const [infuraRes, ethPriceRes] = await Promise.all([
+  const [infuraRes, ethPriceRes, transactionsRes] = await Promise.all([
     fetch(`https://rinkeby.infura.io/v3/${process.env.INFURA_PROJECT_ID}`, {
       body: '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}',
       headers: {
@@ -83,16 +83,19 @@ export async function getStaticProps(context: any) {
         "x-rapidapi-key": `${process.env.RAPID_API_KEY}`,
       }
     }),
+    web3.eth.getBlock('latest'),
   ])
 
-  const [infura, ethPrice] = await Promise.all([
+  const [infura, ethPrice, transactions] = await Promise.all([
     infuraRes.json(),
     ethPriceRes.json(),
+    transactionsRes.transactions,
   ])
   return {
     props: {
       infura,
       ethPrice,
+      transactions,
     }
   }
 }

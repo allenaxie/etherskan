@@ -1,8 +1,11 @@
 import classes from './Transactions.module.scss';
-import {List, Button} from 'antd';
+import {List, Button, Typography, Avatar} from 'antd';
 
 
-const Transactions = () => {
+const Transactions = ({transactions}:any) => {
+
+    const { Paragraph, Text } = Typography;
+
     const dummydata = [
         'Racing car sprays burning fuel into crowd.',
         'Japanese princess to wed commoner.',
@@ -11,26 +14,36 @@ const Transactions = () => {
         'Los Angeles battles huge wildfires.',
       ];
 
-      
+    //   console.log(transactions.splice(0,10));
+      let transactionsArr = transactions.splice(0,10);
     return (
         <List
         bordered
         className={classes.listContainer}
-        dataSource={dummydata}
+        dataSource={transactionsArr}
         header={<span className={classes.listHeader}>Latest Transactions</span>}
         footer={
             <div className={classes.footer}>
                 <Button className={classes.button}>View all transactions</Button>
             </div>
             }
-        renderItem={(item,index) => (
+        renderItem={(item,index):any => (
             <List.Item key={index}>
-                <List.Item.Meta
-                title="Title"
-                description="description"
-                />
-                <div>
-                    {item}
+                <div className={classes.col1} >
+                    <div className={classes.txAvatarContainer}>
+                        <Avatar size={30} icon="Tx"/>
+                    </div>
+                    <div className={classes.txHash}>
+                            <Paragraph ellipsis={{rows:1}}>
+                        <a>
+                                {item}
+                        </a>
+                            </Paragraph>
+                    </div>
+                </div>
+                <div className={classes.col2}>
+                    <div>From:</div>
+                    <div>To:</div>
                 </div>
                 
             </List.Item>
