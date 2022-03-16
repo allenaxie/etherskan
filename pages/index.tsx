@@ -45,7 +45,7 @@ const Home: NextPage = ({eth}:any) => {
 export async function getStaticProps(context:any) {
   const {params} = context;
   const response = await fetch(`https://mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`, {
-      body: '{"jsonrpc":"2.0","method":"eth_accounts","params":[],"id":1}',
+      body: '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}',
       headers: {
         "Content-Type": "application/json"
       },
