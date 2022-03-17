@@ -5,6 +5,7 @@ import { Navbar, Searchbar, Statistics, Blocks, Transactions } from '../componen
 import {useState} from 'react';
 
 
+
 const Home: NextPage = ({ infura, ethPrice, transactions, blocksBatch, handleSearch }: any) => {
   
 
@@ -125,7 +126,7 @@ export async function getStaticProps(context: any) {
   let blocksBatch = new web3.BatchRequest()
   for (let i = 0; i < 2; i++) {
     blocksBatch.add(
-      web3.eth.getBlock.request(latest - i, (err, res) => res)
+      web3.eth.getBlock.request(latest - i, (err:any, res:any) => res)
     )
   }
   blocksBatch.execute();

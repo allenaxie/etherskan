@@ -2,6 +2,7 @@ import classes from './Navbar.module.scss';
 import Image from 'next/image';
 import {Dropdown, Menu, Avatar} from 'antd';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
+import Link from 'next/link';
 
 const Navbar = () => {
 
@@ -68,7 +69,7 @@ const Navbar = () => {
             </div>
             <div className={classes.navItemContainer}>
                 <div className={classes.navItem}>
-                    Home
+                    <Link href="/">Home</Link>
                 </div>
                 <div className={classes.navItem}>
                     <Dropdown overlay={blockchainDropdown} trigger={['hover']}>

@@ -4,9 +4,12 @@ import type { AppProps } from 'next/app';
 import { useState } from 'react';
 import {Navbar} from '../components';
 import { collectAssets } from 'next/dist/build/webpack/plugins/middleware-plugin';
+import { useRouter } from 'next/router';
+
 
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter()
 
   const [blockValue, setBlockValue] = useState({})
   const [transValue, setTransValue] = useState({})
@@ -32,7 +35,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       if (searchBlock.result) {
         setBlockValue(searchBlock.result);
         console.log('blockValue', blockValue)
-
       }
       else {
         try {
@@ -50,6 +52,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
     catch (err) {
       console.log(err)
+    }
+    finally {
+      router.push(`/${value}`);
     }
   }
 

@@ -2,7 +2,7 @@ import classes from './Searchbar.module.scss';
 import { Input, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-const Searchbar = ({handleSearch}) => {
+const Searchbar = ({handleSearch}:any) => {
 
     const { Search } = Input;
 
