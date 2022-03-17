@@ -2,12 +2,10 @@ import classes from './Searchbar.module.scss';
 import { Input, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-const Searchbar = () => {
+const Searchbar = ({handleSearch}) => {
 
     const { Search } = Input;
-    function onSearch(value: string) {
-        console.log(value);
-    }
+
 
     const menu = (
         <Menu>
@@ -39,7 +37,7 @@ const Searchbar = () => {
                 }
                 placeholder="Search by Address / Txn Hash / Block / Token / Ens"
                 allowClear
-                onSearch={onSearch}
+                onSearch={handleSearch}
                 className={classes.searchbar}
             />
         </div>
