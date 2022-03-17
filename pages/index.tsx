@@ -4,25 +4,7 @@ import classes from '../styles/Home.module.scss';
 import { Navbar, Searchbar, Statistics, Blocks, Transactions } from '../components';
 
 
-const Home: NextPage = ({ infura, ethPrice, transactions }: any) => {
-
-  // console.log('infura', infura);
-
-  // web3
-  // const Web3 = require('web3');
-
-  // // Alchemy
-  // const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-  // // // Using HTTPS
-  // const web3 = createAlchemyWeb3(`https://eth-mainnet.alchemyapi.io/${process.env.ALCHEMY_API_KEY}`);
-  // var web3 = new Web3(Web3.currentProvider || 'http://localhost:3000');
-  // console.log(web3.currentProvider);
-
-  
-  // // Many web3.js methods return promises.
-  // web3.eth.getBlock("latest").then(block => {
-  //   console.log(block);
-  // });
+const Home: NextPage = ({ infura, ethPrice, transactions, blocksBatch }: any) => {
 
 
   return (
@@ -65,10 +47,8 @@ export async function getStaticProps(context: any) {
 
   const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
   const web3 = createAlchemyWeb3(`https://eth-rinkeby.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`);
-  // const blockNumber = await web3.eth.getBlock('latest');
-  // console.log("The latest block number is " + JSON.stringify(blockNumber.transactions));
 
-  const [infuraRes, ethPriceRes, transactionsRes] = await Promise.all([
+  const [infuraRes, ethPriceRes, latestBlock] = await Promise.all([
     fetch(`https://rinkeby.infura.io/v3/${process.env.INFURA_PROJECT_ID}`, {
       body: '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}',
       headers: {
@@ -89,15 +69,29 @@ export async function getStaticProps(context: any) {
   const [infura, ethPrice, transactions] = await Promise.all([
     infuraRes.json(),
     ethPriceRes.json(),
-    transactionsRes.transactions,
+    latestBlock.transactions,
   ])
+
+  const latest = await web3.eth.getBlockNumber();
+  // console.log(latest)
+  let blocksBatch = new web3.BatchRequest()
+  for (let i =0; i < 2; i++) {
+    blocksBatch.add(
+      web3.eth.getBlock.request(latest - i, (err, res) => res)
+    )
+  }
+  blocksBatch.execute();
+  // Promise.resolve(blocksBatch.execute())
+  // .then (blocksBatch => blocksBatch);
+
   return {
     props: {
       infura,
       ethPrice,
       transactions,
+      // blocksBatch,
     }
   }
 }
 
-export default Home
+export default Home;

@@ -6,13 +6,7 @@ const Transactions = ({transactions}:any) => {
 
     const { Paragraph, Text } = Typography;
 
-    const dummydata = [
-        'Racing car sprays burning fuel into crowd.',
-        'Japanese princess to wed commoner.',
-        'Australian walks 100km after outback crash.',
-        'Man charged over missing wedding girl.',
-        'Los Angeles battles huge wildfires.',
-      ];
+    
 
     //   console.log(transactions.splice(0,10));
       let transactionsArr = transactions.splice(0,10);
