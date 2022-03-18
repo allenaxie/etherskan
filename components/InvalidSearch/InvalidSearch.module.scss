@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:5rem;
+}
+
+.col1 {
+    flex: 0 0 40%;
+}
+
+.resultTitle {
+    font-size:4rem;
+}
+
+.col2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.primaryText {
+    font-size: 1.6rem;
+    line-height: 4rem;
+}
+
+.queryString {
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-left: 1rem;
+}
+
+.bold {
+    font-family: sans-serif;
+}
+
+.btnContainer {
+    display:flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.btn {
+    border:1px solid;
+    width: 50%;
+    height: 4rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    background-color: #fff;
+
+    &:hover {
+        color:#fff;
+        background-color: rgb(41, 41, 41);
+    }
+}
