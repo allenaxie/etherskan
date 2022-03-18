@@ -6,10 +6,7 @@ const Transactions = ({transactions}:any) => {
 
     const { Paragraph, Text } = Typography;
 
-    
-
-    //   console.log(transactions.splice(0,10));
-      let transactionsArr = transactions.splice(0,10);
+    let transactionsArr = transactions.splice(0,10);
     return (
         <List
         bordered
