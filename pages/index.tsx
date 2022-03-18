@@ -5,10 +5,46 @@ import { Navbar, Searchbar, Statistics, Blocks, Transactions } from '../componen
 import {useState} from 'react';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
+// import { EthTxData } from './data';
 
 
 const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch }: any) => {
   
+  const EthTxData = [
+    {
+      date: '03/02',
+      value: 2640,
+    },
+    {
+      date: '03/03',
+      value: 2440,
+    },
+    {
+      date: '03/04',
+      value: 2570,
+    },
+    {
+      date: '03/05',
+      value: 2590,
+    },
+    {
+      date: '03/06',
+      value: 2900,
+    },
+  ]
+  
+  const [ethTxData, setEthTxData] = useState({
+    labels: EthTxData.map((data) => data.date),
+    datasets:[{
+      label: "Ethereum Transaction History",
+      data: EthTxData.map((data) => data.value),
+      backgroundColor: ['rgba(75,192,192,1)',
+      // '#ecf0f1','#50AF95','#f3ba2f','#2a71d0'
+    ],
+      borderColor: "black",
+      borderWidth:1,
+    }]
+  })
 
   return (
     <div className={classes.container}>
@@ -23,7 +59,7 @@ const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch }: any) => {
           <Searchbar />
         </section>
         <section>
-          <Statistics ethPrice={ethPrice} />
+          <Statistics ethPrice={ethPrice} ethTxData={ethTxData}/>
         </section>
         <section className={classes.blockTransactionSection}>
           <div className={classes.blocks}>

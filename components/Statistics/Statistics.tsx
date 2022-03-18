@@ -1,10 +1,10 @@
 import classes from './Statistics.module.scss';
-import Chart from '../Chart/Chart';
+import LineChart from '../LineChart/LineChart';
 import { Card } from 'antd';
 import millify from "millify";
 import Image from 'next/image';
 
-const Statistics = ({ ethPrice }: any) => {
+const Statistics = ({ ethPrice, ethTxData }: any) => {
     return (
         <Card className={classes.container}>
             <div className={classes.cardContent}>
@@ -36,7 +36,7 @@ const Statistics = ({ ethPrice }: any) => {
                         </div>
                     </div>
                 </div>
-                <div className={classes.col2}>
+                {/* <div className={classes.col2}>
                     <div className={classes.transMedGasContainer}>
                         <div className={classes.transactionsContainer}></div>
                         <div className={classes.medGasContainer}></div>
@@ -45,9 +45,9 @@ const Statistics = ({ ethPrice }: any) => {
                         <div className={classes.difficultyContainer}></div>
                         <div className={classes.hashrateContainer}></div>
                     </div>
-                </div>
+                </div> */}
                 <div className={classes.col3}>
-                    <Chart />
+                    <LineChart ethTxData={ethTxData}/>
                 </div>
             </div>
         </Card>

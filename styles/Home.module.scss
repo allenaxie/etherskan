@@ -4,13 +4,28 @@
 
 .blockTransactionSection {
   display: flex;
+
+  @media only screen and (max-width: 1070px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }  
 }
 
 .blocks {
   flex: 0 0 50%;
+
+  @media only screen and (max-width: 1070px) {
+    width: 70%;
+  }  
 }
 
 .transactions {
   flex: 0 0 50%;
   overflow-x: hidden;
+
+  @media only screen and (max-width: 1070px) {
+    width: 70%;
+  }  
 }
