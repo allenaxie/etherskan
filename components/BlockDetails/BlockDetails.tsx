@@ -9,18 +9,41 @@ const BlockDetails = ({block}:any) => {
     let time = moment(block.timestamp*1000).startOf('minutes').fromNow();
 
     const dummyData = [
-        block.number,
-        time,
-        `${block.transactions.length}`,
-        block.baseFeePerGas,
-        block.difficulty,
-        block.gasLimit,
-        block.gasUsed,
-        block.hash,
-        block.miner,
-        block.size,
-        
-
+        { name: 'Timestamp:',
+          value: time,
+        },
+        {
+            name: 'Number of transactions:',
+            value: block.transactions.length,
+        },
+        {
+            name: 'Base Fee Per Gas:',
+            value: block.baseFeePerGas,
+        },
+        {
+            name: 'Mined by:',
+            value: block.miner,
+        },
+        {
+            name: 'Difficulty:',
+            value: block.difficulty,
+        },
+        {
+            name: 'Size:',
+            value: block.size,
+        },
+        {
+            name: 'Hash:',
+            value: block.hash,
+        },
+        {
+            name: 'Gas Limit:',
+            value: block.gasLimit,
+        },
+        {
+            name: 'Gas Used:',
+            value: block.gasUsed,
+        },
     ]
 
     return (
@@ -28,10 +51,15 @@ const BlockDetails = ({block}:any) => {
         bordered
         className={classes.listContainer}
         dataSource={dummyData}
-        header={<span className={classes.listHeader}>Block Details: #{block.number}</span>}
-        renderItem={item => (
-            <List.Item key={item.id}>
-               {item}
+        header={<span className={classes.listHeader}>Block: #{block.number}</span>}
+        renderItem={(item, idx) => (
+            <List.Item key={idx}>
+                <div className={classes.itemHeading}>
+                    {item.name}
+                </div>
+                <div className={classes.itemValue}>
+                    {item.value}
+                </div>
                 
             </List.Item>
             )}

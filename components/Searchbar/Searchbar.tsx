@@ -43,7 +43,7 @@ const Searchbar = () => {
                     <a>All Filters <DownOutlined/></a>
                 </Dropdown>
                 }
-                placeholder="Search by Address / Txn Hash / Block / Token / Ens"
+                placeholder="Search by Txn Hash / Block"
                 allowClear
                 onSearch={handleSearch}
                 className={classes.searchbar}
