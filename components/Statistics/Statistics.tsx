@@ -2,6 +2,7 @@ import classes from './Statistics.module.scss';
 import Chart from '../Chart/Chart';
 import { Card } from 'antd';
 import millify from "millify";
+import Image from 'next/image';
 
 const Statistics = ({ ethPrice }: any) => {
     return (
@@ -10,7 +11,7 @@ const Statistics = ({ ethPrice }: any) => {
                 <div className={classes.col1}>
                     <div className={classes.ethPriceContainer}>
                         <div className={classes.ethIconContainer}>
-                            <svg className={classes.iconEth}><use xlinkHref="#icon-ethereum"></use></svg>
+                            <Image src="/eth-icon.png" width={45} height={50} />
                         </div>
                         <div className={classes.ethStatsContainer}>
                             <div className={classes.ethPriceStat}>
@@ -23,12 +24,12 @@ const Statistics = ({ ethPrice }: any) => {
                     </div>
                     <div className={classes.ethMCContainer}>
                         <div className={classes.ethMCIconContainer}>
-                            <svg className={classes.ethMCIcon}><use xlinkHref="#icon-sphere"></use></svg>
+                            <Image src="/globe-icon.png" width={35} height={35} />
                         </div>
                         <div className={classes.ethMCStatsContainer}>
                             <div className={classes.ethMCStat}>
                                 <span className={classes.ethMCTitle}>MARKET CAP</span>
-                                <span>
+                                <span className={classes.ethMC}>
                                     ${millify(ethPrice.data.coin.marketCap)} USD
                                 </span>
                             </div>

@@ -1,6 +1,7 @@
 import classes from './searchDetails.module.scss';
 import { useRouter } from 'next/router';
 import {useState, useEffect} from 'react';
+import Head from 'next/head';
 import { BlockDetails, TxDetails } from '../../components';
 
 
@@ -11,6 +12,9 @@ const searchDetails = ({query, valueExist, txValue, blockValue}:any) => {
 
     return (
         <>
+            <Head>
+                <title>Details</title>
+            </Head>
             {blockValue &&
             <>
                 <BlockDetails block={blockValue}/>
