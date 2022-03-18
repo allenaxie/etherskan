@@ -7,9 +7,8 @@ import Router from 'next/router';
 import { useRouter } from 'next/router';
 
 
-const Home: NextPage = ({ infura, ethPrice, transactions, transBatch }: any) => {
+const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch }: any) => {
   
-  console.log('batch', transBatch);
 
   return (
     <div className={classes.container}>
@@ -30,7 +29,7 @@ const Home: NextPage = ({ infura, ethPrice, transactions, transBatch }: any) => 
         </section>
         <section className={classes.blockTransactionSection}>
           <div className={classes.blocks}>
-            <Blocks />
+            <Blocks blocks={blocksBatch}/>
           </div>
           <div className={classes.transactions}>
             <Transactions transactions={transBatch} />
@@ -68,15 +67,21 @@ export async function getStaticProps(context: any) {
     
   ])
 
-  const [infura, ethPrice, transactions ] = await Promise.all([
+  const [infura, ethPrice ] = await Promise.all([
     infuraRes.json(),
     ethPriceRes.json(),
-    latestBlock.transactions,
-    
   ])
 
+  // latest blocks
+  let blocksBatch = [];
+  for (let i = 0; i < 10; i++) {
+    let res = await web3.eth.getBlock(latestBlock.number - i);
+    blocksBatch.push(res);
+  }
+
+  // latest transactions
   let transBatch = [];
-  for (let i=0; i< 10; i++) {
+  for (let i=0; i < 10; i++) {
     let res = await web3.eth.getTransactionFromBlock(latestBlock.number, i);
     transBatch.push(res);
   }
@@ -85,8 +90,8 @@ export async function getStaticProps(context: any) {
     props: {
       infura,
       ethPrice,
-      transactions,
       transBatch,
+      blocksBatch,
     }
   }
 }
