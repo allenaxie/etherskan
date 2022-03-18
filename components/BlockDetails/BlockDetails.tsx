@@ -5,10 +5,9 @@ import moment from 'moment';
 
 const BlockDetails = ({block}:any) => {
     const { Paragraph, Text } = Typography;
-    console.log('block details', block)
     let time = moment(block.timestamp*1000).startOf('minutes').fromNow();
 
-    const dummyData = [
+    const data = [
         { name: 'Timestamp:',
           value: time,
         },
@@ -50,7 +49,7 @@ const BlockDetails = ({block}:any) => {
         <List
         bordered
         className={classes.listContainer}
-        dataSource={dummyData}
+        dataSource={data}
         header={<span className={classes.listHeader}>Block: #{block.number}</span>}
         renderItem={(item, idx) => (
             <List.Item key={idx}>
@@ -58,13 +57,11 @@ const BlockDetails = ({block}:any) => {
                     {item.name}
                 </div>
                 <div className={classes.itemValue}>
-                    {item.value}
+                    {item.value || 'N/A'}
                 </div>
-                
             </List.Item>
             )}
         />
-       
     )
 }
 

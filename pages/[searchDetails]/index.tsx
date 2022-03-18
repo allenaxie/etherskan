@@ -18,7 +18,7 @@ const searchDetails = ({query, valueExist, txValue, blockValue}:any) => {
             }
             {txValue &&
             <>
-                <TxDetails/>
+                <TxDetails tx={txValue}/>
             </>
             }
             { valueExist || 
