@@ -1,11 +1,19 @@
 import classes from './Searchbar.module.scss';
 import { Input, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { useRouter } from 'next/router';
 
-const Searchbar = ({handleSearch}:any) => {
+
+const Searchbar = () => {
 
     const { Search } = Input;
 
+    const router = useRouter();
+
+    function handleSearch (value:any) {
+        console.log('searched value',value)
+        router.push(`/${value}`)
+    }
 
     const menu = (
         <Menu>

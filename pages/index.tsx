@@ -3,10 +3,14 @@ import Head from 'next/head';
 import classes from '../styles/Home.module.scss';
 import { Navbar, Searchbar, Statistics, Blocks, Transactions } from '../components';
 import {useState} from 'react';
+import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 
 
-const Home: NextPage = ({ infura, ethPrice, transactions, blocksBatch, handleSearch }: any) => {
+const Home: NextPage = ({ infura, ethPrice, transactions, blocksBatch, setSearchValue, searchValue }: any) => {
+  
+
   
 
   // const [blockValue, setBlockValue] = useState({})
@@ -69,7 +73,7 @@ const Home: NextPage = ({ infura, ethPrice, transactions, blocksBatch, handleSea
       </header> */}
       <main className={classes.main}>
         <section className={classes.searchbarSection}>
-          <Searchbar handleSearch={handleSearch} />
+          <Searchbar />
         </section>
         <section>
           <Statistics ethPrice={ethPrice} />
