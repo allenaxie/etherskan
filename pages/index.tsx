@@ -7,56 +7,9 @@ import Router from 'next/router';
 import { useRouter } from 'next/router';
 
 
-
-const Home: NextPage = ({ infura, ethPrice, transactions, blocksBatch, setSearchValue, searchValue }: any) => {
+const Home: NextPage = ({ infura, ethPrice, transactions, transBatch }: any) => {
   
-
-  
-
-  // const [blockValue, setBlockValue] = useState({})
-  // const [transValue, setTransValue] = useState({})
-
-  // async function handleSearch(value: string) {
-  //   const Web3 = require('web3');
-  
-  //   const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-  //   const web3 = createAlchemyWeb3(`https://eth-rinkeby.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`);
-
-  //   console.log(value)
-
-  //     try {
-  //       // web3 doesn't have search block by ONLY hash - so using alchemy
-  //      let searchBlockRes = await fetch(`https://eth-rinkeby.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`, {
-  //           body: `{"jsonrpc":"2.0","method":"eth_getBlockByHash","params":["${value}", true],"id":0}`,
-  //           headers: {
-  //             "Content-Type": "application/json"
-  //           },
-  //           method: "POST"
-  //         });
-  //       let searchBlock = await Promise.resolve(searchBlockRes.json());
-  //       if (searchBlock.result) {
-  //         setBlockValue(searchBlock.result);
-  //         console.log('blockValue',blockValue)
-
-  //       }
-  //       else {
-  //         try {
-  //           let searchTransRes = await web3.eth.getTransaction(value);
-  //           let searchTrans = await Promise.resolve(searchTransRes);
-  //           if (searchTrans) {
-  //             setTransValue(searchTrans);
-  //             console.log('transValue',transValue)
-  //           }
-  //         }
-  //         catch (err) {
-  //           console.log(err)
-  //         }
-  //       }
-  //     }
-  //     catch (err) {
-  //       console.log(err)
-  //     }
-  // }
+  console.log('batch', transBatch);
 
   return (
     <div className={classes.container}>
@@ -68,9 +21,6 @@ const Home: NextPage = ({ infura, ethPrice, transactions, blocksBatch, setSearch
         <script defer src="https://i.icomoon.io/public/temp/4dd956f873/UntitledProject/svgxuse.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@alch/alchemy-web3@latest/dist/alchemyWeb3.min.js"></script>
       </Head>
-      {/* <header className={classes.navbar}>
-        <Navbar />
-      </header> */}
       <main className={classes.main}>
         <section className={classes.searchbarSection}>
           <Searchbar />
@@ -83,7 +33,7 @@ const Home: NextPage = ({ infura, ethPrice, transactions, blocksBatch, setSearch
             <Blocks />
           </div>
           <div className={classes.transactions}>
-            <Transactions transactions={transactions} />
+            <Transactions transactions={transBatch} />
           </div>
         </section>
       </main>
@@ -125,25 +75,18 @@ export async function getStaticProps(context: any) {
     
   ])
 
-  const latest = await web3.eth.getBlockNumber();
-  // console.log(latest)
-  let blocksBatch = new web3.BatchRequest()
-  for (let i = 0; i < 2; i++) {
-    blocksBatch.add(
-      web3.eth.getBlock.request(latest - i, (err:any, res:any) => res)
-    )
+  let transBatch = [];
+  for (let i=0; i< 10; i++) {
+    let res = await web3.eth.getTransactionFromBlock(latestBlock.number, i);
+    transBatch.push(res);
   }
-  blocksBatch.execute();
-  // Promise.resolve(blocksBatch.execute())
-  // .then (blocksBatch => blocksBatch);
 
   return {
     props: {
       infura,
       ethPrice,
       transactions,
-
-      // blocksBatch,
+      transBatch,
     }
   }
 }

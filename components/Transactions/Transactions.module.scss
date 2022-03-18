@@ -2,6 +2,7 @@
     padding: 0 1rem;
     margin: 2rem;
     box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    overflow: hidden;
 }
 
 .listHeader {
@@ -22,7 +23,10 @@
 
 .col2 {
     display: flex;
+    flex-direction: column;
     flex: 0 0 70%;
+    width: 100%;
+    overflow: hidden;
 }
 .footer {
     display: flex;
