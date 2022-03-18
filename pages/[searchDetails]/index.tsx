@@ -1,14 +1,44 @@
 import classes from './searchDetails.module.scss';
 import { useRouter } from 'next/router';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 
-const searchDetails = ({query}:any) => {
+const searchDetails = ({query, valueExist, txValue, blockValue}:any) => {
+
+    // console.log(blockValue,'yehhhh')
+
+
+    console.log('valueExist', valueExist)
 
     return (
         <>
-            I am search details page
-            {query}
+            {blockValue &&
+            <>
+                'block content'
+            </>
+            }
+            {txValue &&
+            <>
+                'tx content'
+            </>
+            }
+            { valueExist || 
+            
+            'invalid search'
+            }
+         
+             
+            {/* {valueExist ? 
+                <>
+                    <h1>Block hash: {query}</h1>
+                    <br/>
+                    {valueExist.hash}
+                </>
+                :
+                <>
+                    <h1> Transaction</h1>
+                </>
+            } */}
         </>
     )
 }
@@ -29,11 +59,67 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context:any) {
     const query = context.params.searchDetails;
-    console.log(query)
+    console.log('query', query)
+
+
+    let blockValue = false;
+    let txValue = false;
+    let valueExist = false;
+
+    const Web3 = require('web3');
+
+    const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
+    const web3 = createAlchemyWeb3(`https://eth-rinkeby.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`);
+
+    // determine if query is a block, tx, or neither
+    // if query is a block
+    try {
+        let searchBlockRes = await web3.eth.getBlock(query);
+        console.log('searchBlockRes', searchBlockRes);
+        blockValue = searchBlockRes;
+        valueExist = true;
+        console.log('blockValueExist', valueExist);
+        console.log('trans value', blockValue);
+    }
+    // if query is a transaction
+    catch (err) {
+        console.log(err)
+        try {
+            let searchTxRes = await web3.eth.getTransaction(query);
+            console.log('searchTxRes',searchTxRes);
+            txValue = searchTxRes;
+            valueExist = true;
+            console.log('txValueExist', valueExist);
+            console.log('tx value', txValue)
+        }
+        // query is neither block nor transaction
+        catch (err) {
+            console.log(err)
+        }
+    }
+    // await fetch(`https://eth-rinkeby.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`, {
+    //     body: `{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["${query}", true],"id":0}`,
+    //     headers: {
+    //     "Content-Type": "application/json"
+    //     },
+    //     method: "POST"
+    // });
+    // if query is a block
+    // if (searchBlockRes.status < 300) {
+    //     console.log('searchBlockRes',searchBlockRes)
+    //     console.log('status', searchBlockRes.status)
+    //     let blockData = await Promise.resolve(searchBlockRes.json());
+    //     console.log(blockData)
+    // } else {
+    //     console.log('query is not a block')
+    // }
 
     return {
         props: {
             query,
+            blockValue,
+            txValue,
+            valueExist,
         }
     }
 }
