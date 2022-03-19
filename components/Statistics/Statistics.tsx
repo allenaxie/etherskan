@@ -11,7 +11,7 @@ const Statistics = ({ ethPrice, ethTxData }: any) => {
                 <div className={classes.col1}>
                     <div className={classes.ethPriceContainer}>
                         <div className={classes.ethIconContainer}>
-                            <Image src="/eth-icon.png" width={45} height={50} />
+                            <Image src="/eth-icon.png" width={45} height={50} className={classes.iconEth}/>
                         </div>
                         <div className={classes.ethStatsContainer}>
                             <div className={classes.ethPriceStat}>
@@ -24,7 +24,7 @@ const Statistics = ({ ethPrice, ethTxData }: any) => {
                     </div>
                     <div className={classes.ethMCContainer}>
                         <div className={classes.ethMCIconContainer}>
-                            <Image src="/globe-icon.png" width={35} height={35} />
+                            <Image src="/globe-icon.png" width={35} height={35} className={classes.ethMCIcon}/>
                         </div>
                         <div className={classes.ethMCStatsContainer}>
                             <div className={classes.ethMCStat}>

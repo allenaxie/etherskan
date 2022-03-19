@@ -2,6 +2,19 @@
     display: flex;
     align-items: center;
     font-size: 1.5rem;
+    background: linear-gradient(to right, var(--color-primary) -30%, var(--color-secondary));
+    background: var(--color-secondary);
+
+    & a {
+        transition: all .2s;
+    }
+
+    & a:hover {
+        font-weight: 600;
+        transform: translateY(-2px);
+        color: black;
+        text-shadow: 1px 2px 2px rgba(210, 210, 210, 0.632);
+    }
 }
 
 .logoContainer {
@@ -11,6 +24,11 @@
     font-weight: 700;
     font-size: 2.5rem;
     margin: .5rem;
+    transition: all .2s;
+
+    &:hover {
+        
+    }
 }
 
 .navItemContainer {

@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Abel&family=Anonymous+Pro&family=Bebas+Neue&family=Black+Ops+One&family=Bungee+Shade&family=Gideon+Roman&family=Marcellus&family=Open+Sans:wght@300&family=Orbitron:wght@600&family=Permanent+Marker&family=Saira+Condensed:wght@200&family=Share+Tech+Mono&family=Teko&display=swap');
 
 
+:root {
+  --color-primary: #457b9d;
+  --color-secondary: #a8dadc;
+  --color-tertiary: #f1faee;
+}
+
 html,
 body {
   padding: 0;

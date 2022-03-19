@@ -5,7 +5,6 @@ import { Navbar, Searchbar, Statistics, Blocks, Transactions } from '../componen
 import {useState} from 'react';
 import Router from 'next/router';
 import { useRouter } from 'next/router';
-// import { EthTxData } from './data';
 
 
 const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch }: any) => {
@@ -38,7 +37,7 @@ const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch }: any) => {
     datasets:[{
       label: "Ethereum Transaction History",
       data: EthTxData.map((data) => data.value),
-      backgroundColor: ['rgba(75,192,192,1)',
+      backgroundColor: ['#2a71d0',
       // '#ecf0f1','#50AF95','#f3ba2f','#2a71d0'
     ],
       borderColor: "black",
