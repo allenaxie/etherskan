@@ -9,6 +9,8 @@ import { useRouter } from 'next/router';
 
 const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch }: any) => {
   
+  let ethCurrentPrice = parseInt(ethPrice.data.coin.price)
+
   const EthTxData = [
     {
       date: '03/02',
@@ -29,6 +31,14 @@ const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch }: any) => {
     {
       date: '03/06',
       value: 2900,
+    },
+    {
+      date: '03/07',
+      value: 2860,
+    },
+    {
+      date: '03/08',
+      value: ethCurrentPrice,
     },
   ]
   

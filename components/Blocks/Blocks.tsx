@@ -28,7 +28,7 @@ const Blocks = ({ blocks }: any) => {
                         </div>
                         <List.Item.Meta
                             title={
-                                <Paragraph copyable className={classes.blockNumber}>
+                                <Paragraph copyable={{text: `${b.number}`}} className={classes.blockNumber}>
                                     <a>
                                         {b.number}
                                     </a>
