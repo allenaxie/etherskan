@@ -1,7 +1,8 @@
 .container {
-    border: 1px solid black;
+    border: .5px solid rgba(80, 80, 80, 0.591);
     margin: 2rem;
     background: linear-gradient(to right bottom, var(--color-tertiary), var(--color-secondary));
+    box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
 }
 
 .cardContent {
