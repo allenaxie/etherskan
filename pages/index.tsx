@@ -1,7 +1,7 @@
-import type { NextPage, GetStaticProps } from 'next';
+import type { NextPage } from 'next';
 import Head from 'next/head';
 import classes from '../styles/Home.module.scss';
-import { Navbar, Searchbar, Statistics, Blocks, Transactions } from '../components';
+import { Navbar, Searchbar, Statistics, Blocks, Transactions, Footer } from '../components';
 import {useState} from 'react';
 import { useRouter } from 'next/router';
 
@@ -78,6 +78,9 @@ const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch, handleSearc
           </div>
         </section>
       </main>
+      <footer>
+        <Footer/>
+      </footer>
     </div>
   )
 }
