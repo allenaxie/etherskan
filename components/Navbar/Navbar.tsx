@@ -64,8 +64,12 @@ const Navbar = () => {
     return (
         <nav className={classes.navContainer}>
             <div className={classes.logoContainer}>
-                <Image src="/logo.png" width={30} height={30}/>
-                <span className={classes.logoText}>Etherskan</span>
+                <Link href="/">
+                    <div className={classes.iconText}>
+                        <Image src="/logo.png" width={30} height={30}/>
+                        <span className={classes.logoText}>Etherskan</span>
+                    </div>
+                </Link>
             </div>
             <div className={classes.navItemContainer}>
                 <div className={classes.navItem}>

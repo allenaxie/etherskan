@@ -17,7 +17,7 @@
 
     a:hover {
         color: black;
-        text-shadow: 1px 2px 2px rgba(210, 210, 210, 0.632);
+        text-shadow: 1px 2px 0px rgba(210, 210, 210, 0.632);
     }
 }
 
@@ -28,10 +28,21 @@
     font-weight: 700;
     font-size: 2.5rem;
     margin: .5rem;
-    transition: all .2s;
+    cursor: pointer;
+    
+    .iconText {
+        display: flex;
+        align-items: center;
+        transition: all .2s;
+
+        &:hover {
+            transform: scale(1.05)
+        }
+    }
+
 
     .logoText {
-        text-shadow: 2px 2px 5px white;
+        text-shadow: 2px 2px 0px white;
     }
 }
 

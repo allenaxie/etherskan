@@ -34,7 +34,6 @@ const Transactions = ({ transactions }: any) => {
                     </div>
                     <div className={classes.col2}>
                         <Paragraph ellipsis={{ rows: 1 }}>
-                            
                                 From: <a>{t.from}</a>
                             
                         </Paragraph>
