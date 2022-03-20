@@ -4,16 +4,16 @@ import { DownOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router';
 
 
-const Searchbar = () => {
+const Searchbar = ({handleSearch}:any) => {
 
     const { Search } = Input;
 
-    const router = useRouter();
+    // const router = useRouter();
 
-    function handleSearch (value:any) {
-        console.log('searched value',value)
-        router.push(`/${value}`)
-    }
+    // function handleSearch (value:any) {
+    //     console.log('searched value',value)
+    //     router.push(`/${value}`)
+    // }
 
     const menu = (
         <Menu>

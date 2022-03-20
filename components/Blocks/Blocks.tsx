@@ -3,7 +3,7 @@ import { List, Button, Typography, Avatar } from 'antd';
 import moment from 'moment';
 
 
-const Blocks = ({ blocks }: any) => {
+const Blocks = ({ blocks, handleSearch }: any) => {
 
     const { Paragraph } = Typography;
 
@@ -29,9 +29,9 @@ const Blocks = ({ blocks }: any) => {
                         <List.Item.Meta
                             title={
                                 <Paragraph copyable={{text: `${b.number}`}} className={classes.blockNumber}>
-                                    <a>
+                                    <button className={classes.blockBtn} onClick={() => handleSearch(b.number)}>
                                         {b.number}
-                                    </a>
+                                    </button>
                                 </Paragraph>
                             }
                             description={
@@ -45,9 +45,9 @@ const Blocks = ({ blocks }: any) => {
                         <div className={classes.minerContainer}>
                             <Paragraph ellipsis={{ rows: 1 }}>
                                 Miner:
-                                <a className={classes.miner}>
+                                <span className={classes.miner}>
                                     {b.miner}
-                                </a>
+                                </span>
                             </Paragraph>
                         </div>
                         <div>

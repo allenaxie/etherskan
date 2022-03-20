@@ -2,11 +2,10 @@ import classes from './Transactions.module.scss';
 import { List, Button, Typography, Avatar } from 'antd';
 
 
-const Transactions = ({ transactions }: any) => {
+const Transactions = ({ transactions, handleSearch }: any) => {
 
     const { Paragraph, Text } = Typography;
 
-    // let transactionsArr = transactions.splice(0,10);
     return (
         <List
             bordered
@@ -25,22 +24,22 @@ const Transactions = ({ transactions }: any) => {
                             <Avatar size={30} icon="Tx" />
                         </div>
                         <div className={classes.txHash}>
-                            <Paragraph ellipsis={{ rows: 1 }}>
-                                <a>
+                            <button className={classes.hashBtn} onClick={() => handleSearch(t.hash)}>
+                                <Paragraph ellipsis={{ rows: 1 }} copyable>
                                     {t.hash}
-                                </a>
-                            </Paragraph>
+                                </Paragraph>
+                            </button>
                         </div>
                     </div>
                     <div className={classes.col2}>
                         <Paragraph ellipsis={{ rows: 1 }}>
-                                From: <a>{t.from}</a>
-                            
+                            From: <a>{t.from}</a>
+
                         </Paragraph>
                         <Paragraph ellipsis={{ rows: 1 }}>
 
-                                To: <a>{t.to}</a>
-                         
+                            To: <a>{t.to}</a>
+
                         </Paragraph>
                     </div>
 

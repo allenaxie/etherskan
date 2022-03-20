@@ -3,11 +3,10 @@ import Head from 'next/head';
 import classes from '../styles/Home.module.scss';
 import { Navbar, Searchbar, Statistics, Blocks, Transactions } from '../components';
 import {useState} from 'react';
-import Router from 'next/router';
 import { useRouter } from 'next/router';
 
 
-const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch }: any) => {
+const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch, handleSearch }: any) => {
   
   let ethCurrentPrice = parseInt(ethPrice.data.coin.price)
 
@@ -65,17 +64,17 @@ const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch }: any) => {
       </Head>
       <main className={classes.main}>
         <section className={classes.searchbarSection}>
-          <Searchbar />
+          <Searchbar handleSearch={handleSearch}/>
         </section>
         <section>
           <Statistics ethPrice={ethPrice} ethTxData={ethTxData}/>
         </section>
         <section className={classes.blockTransactionSection}>
           <div className={classes.blocks}>
-            <Blocks blocks={blocksBatch}/>
+            <Blocks blocks={blocksBatch} handleSearch={handleSearch}/>
           </div>
           <div className={classes.transactions}>
-            <Transactions transactions={transBatch} />
+            <Transactions transactions={transBatch} handleSearch={handleSearch}/>
           </div>
         </section>
       </main>
