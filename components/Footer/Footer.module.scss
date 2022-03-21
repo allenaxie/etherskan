@@ -2,9 +2,26 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 3rem;
+    padding: 4rem;
     background-color: var(--color-secondary);
     font-size: 1.3rem;
+}
+
+.logoContainer {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.socialMediaList {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+
+    & > * {
+        cursor: pointer;
+    }
 }
 
 .divider {
@@ -15,17 +32,19 @@
     border-top: 1px solid rgb(82, 82, 82, 0.3);
 }
 
-.col2 {
+.colHeading {
+    font-weight: 700;
+    font-family: sans-serif;
+    font-size: 1.5rem;
+}
 
-    .col2Heading {
-        font-weight: 700;
-        font-family: sans-serif;
-        font-size: 1.5rem;
-    }
-    
-    .col2List {
-        margin-top: 2rem;
-        display: flex;
-        flex-direction: column;
+.colList {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+        cursor: pointer;
     }
 }
+
