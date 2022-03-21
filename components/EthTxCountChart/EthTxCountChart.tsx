@@ -1,4 +1,4 @@
-import classes from './LineChart.module.scss';
+import classes from './EthTxCountChart.module.scss';
 import React from 'react';
 import { Line} from 'react-chartjs-2';
 import {
@@ -24,21 +24,17 @@ ChartJS.register(
   BarElement,
 )
 
-
-const LineChart = ({ethTxData}:any) => {
-
-  
+const EthTxCountChart = ({ethTxData}:any) => {
 
   return (
     <div className={classes.container}>
       <div style={{width: 300}}>
         <Line
           data={ethTxData}
-
         />
       </div>
     </div>
   )
 }
 
-export default LineChart;
+export default EthTxCountChart;

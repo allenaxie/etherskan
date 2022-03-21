@@ -1,5 +1,7 @@
 import classes from './Statistics.module.scss';
-import LineChart from '../LineChart/LineChart';
+import EthTxCountChart from '../EthTxCountChart/EthTxCountChart';
+import NetworkThroughputChart from '../NetworkThroughputChart/NetworkThroughputChart';
+import AvgLatencyChart from '../AvgLatencyChart/AvgLatencyChart';
 import { Card } from 'antd';
 import millify from "millify";
 import Image from 'next/image';
@@ -36,8 +38,10 @@ const Statistics = ({ ethPrice, ethTxData }: any) => {
                         </div>
                     </div>
                 </div>
-                <div className={classes.col3}>
-                    <LineChart ethTxData={ethTxData}/>
+                <div className={classes.col2}>
+                    <EthTxCountChart ethTxData={ethTxData}/>
+                    <NetworkThroughputChart/>
+                    <AvgLatencyChart/>
                 </div>
             </div>
         </Card>

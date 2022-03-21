@@ -11,39 +11,39 @@ const Home: NextPage = ({ ethPrice, transBatch, blocksBatch, handleSearch }: any
 
   const EthTxData = [
     {
-      date: '03/02',
-      value: 2640,
+      date: '03/15',
+      value: 1.098,
     },
     {
-      date: '03/03',
-      value: 2440,
+      date: '03/16',
+      value: 1.190,
     },
     {
-      date: '03/04',
-      value: 2570,
+      date: '03/17',
+      value: 1.236,
     },
     {
-      date: '03/05',
-      value: 2590,
+      date: '03/18',
+      value: 1.175,
     },
     {
-      date: '03/06',
-      value: 2900,
+      date: '03/19',
+      value: 1.266,
     },
     {
-      date: '03/07',
-      value: 2860,
+      date: '03/20',
+      value: 1.128,
     },
     {
-      date: '03/08',
-      value: ethCurrentPrice,
+      date: '03/21',
+      value: 1.119,
     },
   ]
   
   const [ethTxData, setEthTxData] = useState({
     labels: EthTxData.map((data) => data.date),
     datasets:[{
-      label: "Ethereum Transaction History",
+      label: "Ethereum Transactions Count (millions)",
       data: EthTxData.map((data) => data.value),
       backgroundColor: ['#2a71d0',
     ],
