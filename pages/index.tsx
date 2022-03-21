@@ -1,12 +1,11 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import classes from '../styles/Home.module.scss';
-import { Navbar, Searchbar, Statistics, Blocks, Transactions, Footer } from '../components';
+import { Searchbar, Statistics, Blocks, Transactions, Footer } from '../components';
 import {useState} from 'react';
-import { useRouter } from 'next/router';
 
 
-const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch, handleSearch }: any) => {
+const Home: NextPage = ({ ethPrice, transBatch, blocksBatch, handleSearch }: any) => {
   
   let ethCurrentPrice = parseInt(ethPrice.data.coin.price)
 
@@ -47,7 +46,6 @@ const Home: NextPage = ({ infura, ethPrice, transBatch, blocksBatch, handleSearc
       label: "Ethereum Transaction History",
       data: EthTxData.map((data) => data.value),
       backgroundColor: ['#2a71d0',
-      // '#ecf0f1','#50AF95','#f3ba2f','#2a71d0'
     ],
       borderColor: "black",
       borderWidth:1,
@@ -93,14 +91,7 @@ export async function getStaticProps(context: any) {
   const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
   const web3 = createAlchemyWeb3(`https://eth-rinkeby.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`);
 
-  const [infuraRes, ethPriceRes, latestBlock] = await Promise.all([
-    fetch(`https://rinkeby.infura.io/v3/${process.env.INFURA_PROJECT_ID}`, {
-      body: '{"jsonrpc":"2.0","method":"eth_hashrate","params":[],"id":1}',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "POST"
-    }),
+  const [ethPriceRes, latestBlock] = await Promise.all([
     fetch("https://coinranking1.p.rapidapi.com/coin/razxDUgYGNAdQ?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h", {
       "method": "GET",
       "headers": {
@@ -112,8 +103,7 @@ export async function getStaticProps(context: any) {
     
   ])
 
-  const [infura, ethPrice ] = await Promise.all([
-    infuraRes.json(),
+  const [ ethPrice ] = await Promise.all([
     ethPriceRes.json(),
   ])
 
@@ -133,7 +123,6 @@ export async function getStaticProps(context: any) {
 
   return {
     props: {
-      infura,
       ethPrice,
       transBatch,
       blocksBatch,

@@ -1,14 +1,8 @@
-import classes from './searchDetails.module.scss';
-import { useRouter } from 'next/router';
-import {useState, useEffect} from 'react';
 import Head from 'next/head';
 import { BlockDetails, TxDetails, InvalidSearch, Searchbar } from '../../components';
 
 
 const searchDetails = ({query, valueExist, txValue, blockValue}:any) => {
-
-
-    console.log('valueExist', valueExist)
 
     return (
         <>
@@ -27,14 +21,11 @@ const searchDetails = ({query, valueExist, txValue, blockValue}:any) => {
             </>
             }
             { valueExist || 
-            
                 <InvalidSearch query={query}/>
             }
-         
         </>
     )
 }
-
 
 export async function getStaticPaths() {
     return {
@@ -66,11 +57,9 @@ export async function getStaticProps(context:any) {
     // if query is a block
     try {
         let searchBlockRes = await web3.eth.getBlock(query);
-        console.log('searchBlockRes', searchBlockRes);
         if (searchBlockRes) {
             blockValue = searchBlockRes;
             valueExist = true;
-            console.log('its a block')
         }
         else {
             // if query is a transaction
@@ -82,12 +71,9 @@ export async function getStaticProps(context:any) {
                 },
                 method: "POST"
                 })
-                console.log('searchTxRes',searchTxRes);
                 if (searchTxRes) {
                     txValue = await Promise.resolve(searchTxRes.json());
-                    console.log('txValue', txValue)
                     valueExist = true;
-                    console.log('its a transaction');
                 }
             }
             // query is neither block nor transaction
@@ -98,7 +84,6 @@ export async function getStaticProps(context:any) {
     }
     catch (err) {
         console.log(err)
-        
     }
 
     return {

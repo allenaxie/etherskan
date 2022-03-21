@@ -1,6 +1,6 @@
 import classes from './Footer.module.scss';
 import Image from 'next/image';
-import { Badge, Divider } from 'antd';
+import { Divider } from 'antd';
 import { GithubOutlined, WechatOutlined, FacebookOutlined, InstagramOutlined } from '@ant-design/icons';
 
 const Footer = () => {
@@ -8,7 +8,7 @@ const Footer = () => {
         <div className={classes.container}>
             <div className={classes.col1}>
                 <div className={classes.logoContainer}>
-                    <Image src="/logo.png" width={30} height={30}/>
+                    <Image src="/logo.png" width={30} height={30} alt="logo image"/>
                     <span className={classes.logoText}>Etherskan</span>
                 </div>
                 <div className={classes.socialMediaList}>

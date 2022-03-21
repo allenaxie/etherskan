@@ -17,7 +17,7 @@ const Transactions = ({ transactions, handleSearch }: any) => {
                     <Button className={classes.button}>View all transactions</Button>
                 </div>
             }
-            renderItem={(t, index): any => (
+            renderItem={(t:any, index): any => (
                 <List.Item key={index}>
                     <div className={classes.col1} >
                         <div className={classes.txAvatarContainer}>

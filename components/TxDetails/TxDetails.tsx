@@ -1,6 +1,5 @@
 import classes from './TxDetails.module.scss';
-import {List, Button, Typography, Avatar} from 'antd';
-import moment from 'moment';
+import {List, Typography} from 'antd';
 
 const TxDetails = ({tx}:any) => {
 

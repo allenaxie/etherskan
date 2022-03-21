@@ -64,9 +64,9 @@ const Navbar = () => {
     return (
         <nav className={classes.navContainer}>
             <div className={classes.logoContainer}>
-                <Link href="/">
+                <Link href="/" passHref>
                     <div className={classes.iconText}>
-                        <Image src="/logo.png" width={30} height={30}/>
+                        <Image src="/logo.png" width={30} height={30} alt="logo image"/>
                         <span className={classes.logoText}>Etherskan</span>
                     </div>
                 </Link>

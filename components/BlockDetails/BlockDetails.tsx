@@ -1,5 +1,5 @@
 import classes from './BlockDetails.module.scss';
-import {List, Button, Typography, Avatar} from 'antd';
+import {List, Typography} from 'antd';
 import moment from 'moment';
 
 

@@ -11,7 +11,7 @@ const Statistics = ({ ethPrice, ethTxData }: any) => {
                 <div className={classes.col1}>
                     <div className={classes.ethPriceContainer}>
                         <div className={classes.ethIconContainer}>
-                            <Image src="/eth-icon.png" width={45} height={50} className={classes.iconEth}/>
+                            <Image src="/eth-icon.png" width={45} height={50} className={classes.iconEth} alt="ethereum image"/>
                         </div>
                         <div className={classes.ethStatsContainer}>
                             <div className={classes.ethPriceStat}>
@@ -24,7 +24,7 @@ const Statistics = ({ ethPrice, ethTxData }: any) => {
                     </div>
                     <div className={classes.ethMCContainer}>
                         <div className={classes.ethMCIconContainer}>
-                            <Image src="/globe-icon.png" width={35} height={35} className={classes.ethMCIcon}/>
+                            <Image src="/globe-icon.png" width={35} height={35} className={classes.ethMCIcon} alt="market cap image"/>
                         </div>
                         <div className={classes.ethMCStatsContainer}>
                             <div className={classes.ethMCStat}>
@@ -36,16 +36,6 @@ const Statistics = ({ ethPrice, ethTxData }: any) => {
                         </div>
                     </div>
                 </div>
-                {/* <div className={classes.col2}>
-                    <div className={classes.transMedGasContainer}>
-                        <div className={classes.transactionsContainer}></div>
-                        <div className={classes.medGasContainer}></div>
-                    </div>
-                    <div className={classes.diffHashContainer}>
-                        <div className={classes.difficultyContainer}></div>
-                        <div className={classes.hashrateContainer}></div>
-                    </div>
-                </div> */}
                 <div className={classes.col3}>
                     <LineChart ethTxData={ethTxData}/>
                 </div>
