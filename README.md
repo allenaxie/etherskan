@@ -10,6 +10,8 @@ Etherskan (with a K) is an application based off of Etherscan.io. In this applic
 
 This is my first project related to the blockchain so I am excited to continue learning about this topic and become a part of this community. 
 
+<img src="public/demo-gif.gif?raw=true" width="500px">
+
 
 ## 💻 Technologies Used 
 
