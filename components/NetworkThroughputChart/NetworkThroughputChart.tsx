@@ -57,7 +57,7 @@ const NetworkThroughputChart = () => {
           },
     ]
 
-    const [networkData, setNetworkData] = useState({
+    const [networkData, setNetworkData]:any = useState({
         labels: NetworkData.map((data:any) => data.date),
         datasets: [{
             label: "Network Throughput (tx/s)",

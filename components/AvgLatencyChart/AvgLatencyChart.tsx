@@ -57,11 +57,11 @@ const AvgLatencyChart = () => {
           },
     ]
 
-    const [latencyData, setLatencyData] = useState({
-        labels: LatencyData.map((data) => data.date),
+    const [latencyData, setLatencyData]:any = useState({
+        labels: LatencyData.map((data:any) => data.date),
         datasets:[{
           label: "Ethereum Average Latency (seconds)",
-          data: LatencyData.map((data) => data.value),
+          data: LatencyData.map((data:any) => data.value),
           backgroundColor: ['rgb(250, 193, 71)'],
           borderColor: "black",
           borderWidth:1,
