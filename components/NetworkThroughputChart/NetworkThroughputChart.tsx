@@ -29,38 +29,38 @@ const NetworkThroughputChart = () => {
     const NetworkData:any = [
         {
             date: '03/15',
-            value: 1.098,
+            value: 12.73,
           },
           {
             date: '03/16',
-            value: 1.190,
+            value: 13.77,
           },
           {
             date: '03/17',
-            value: 1.236,
+            value: 14.30,
           },
           {
             date: '03/18',
-            value: 1.175,
+            value: 13.60,
           },
           {
             date: '03/19',
-            value: 1.266,
+            value: 14.65,
           },
           {
             date: '03/20',
-            value: 1.128,
+            value: 13.05,
           },
           {
             date: '03/21',
-            value: 1.119,
+            value: 12.95,
           },
     ]
 
     const [networkData, setNetworkData] = useState({
         labels: NetworkData.map((data:any) => data.date),
         datasets: [{
-            label: "Network Throughput",
+            label: "Network Throughput (tx/s)",
             data: NetworkData.map((data:any) => data.value),
             backgroundColor:['#fff'],
             borderColor:"black",
