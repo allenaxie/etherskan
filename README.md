@@ -8,6 +8,8 @@
 
 Etherskan (with a K) is an application based off of Etherscan.io. In this application, the user can view the latest blocks and transactions, as well as search a block or transaction in the Ethereum network to view its details.
 
+This is my first project related to the blockchain so I am excited to continue learning about this topic and become a part of this community. 
+
 
 ## 💻 Technologies Used 
 
