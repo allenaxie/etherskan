@@ -45,8 +45,7 @@ const Home: NextPage = ({ ethPrice, transBatch, blocksBatch, handleSearch }: any
     datasets:[{
       label: "Ethereum Transactions Count (millions)",
       data: EthTxData.map((data) => data.value),
-      backgroundColor: ['#2a71d0',
-    ],
+      backgroundColor: ['#2a71d0'],
       borderColor: "black",
       borderWidth:1,
     }]
